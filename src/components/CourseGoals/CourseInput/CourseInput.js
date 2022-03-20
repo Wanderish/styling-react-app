@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import styledComponents from "styled-components";
 
 import Button from "../../UI/Button/Button";
-import "./CourseInput.css";
-
+import styles from "./CourseInput.module.css";
 
 //Create one more component for the form div which (important) can be in this file as it will be used only for the form tag
-const FormControl = styledComponents.div`
+/* const FormControl = styledComponents.div`
 margin: 0.5rem 0;
 
 & label {
@@ -38,7 +36,7 @@ margin: 0.5rem 0;
 &.invalid label {
   color: red;
 }
-`;
+`; */
 
 const CourseInput = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -64,10 +62,14 @@ const CourseInput = (props) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <FormControl className={!isValid ? "invalid" : ""}>
+      <div
+        className={`${styles["form-control"]} ${
+          !isValid ? styles.invalid : ""
+        }`}
+      >
         <label>Course Goal</label>
         <input type="text" onChange={goalInputChangeHandler} />
-      </FormControl>
+      </div>
       <Button type="submit">Add Goal</Button>
     </form>
   );
